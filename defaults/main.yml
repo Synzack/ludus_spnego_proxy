@@ -1,0 +1,10 @@
+---
+# Set per host to either proxy or client.
+spnego_mode: ""
+
+# The role appends the joined domain unless an explicit FQDN is provided.
+spnego_proxy_hostname: proxy
+spnego_proxy_fqdn: ""
+spnego_proxy_port: 3128
+spnego_pac_port: 8080
+spnego_computer_name: SQUIDPROXY

@@ -1,0 +1,16 @@
+[libdefaults]
+    default_realm = {{ spnego_realm }}
+    dns_lookup_realm = false
+    dns_lookup_kdc = false
+    rdns = false
+    forwardable = true
+
+[realms]
+    {{ spnego_realm }} = {
+        kdc = {{ spnego_dc_fqdn }}
+        admin_server = {{ spnego_dc_fqdn }}
+    }
+
+[domain_realm]
+    .{{ spnego_domain }} = {{ spnego_realm }}
+    {{ spnego_domain }} = {{ spnego_realm }}

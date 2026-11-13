@@ -1,0 +1,5 @@
+@echo off
+echo The first response should be HTTP/1.1 407 with Proxy-Authenticate: Negotiate.
+echo The final response should be HTTP/1.1 200, with no credential prompt.
+curl.exe -v --proxy-negotiate -U : -x http://{{ spnego_effective_proxy_fqdn }}:{{ spnego_proxy_port }} https://example.com/ -o NUL
+pause

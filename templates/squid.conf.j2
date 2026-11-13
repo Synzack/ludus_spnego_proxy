@@ -1,0 +1,21 @@
+visible_hostname {{ spnego_effective_proxy_fqdn }}
+http_port {{ spnego_proxy_port }}
+
+auth_param negotiate program /usr/lib/squid/negotiate_kerberos_auth -k /etc/squid/HTTP.keytab -s HTTP/{{ spnego_effective_proxy_fqdn }}@{{ spnego_realm }}
+auth_param negotiate children 10 startup=1 idle=1
+auth_param negotiate keep_alive on
+
+acl authenticated proxy_auth REQUIRED
+acl SSL_ports port 443
+acl Safe_ports port 80
+acl Safe_ports port 443
+acl CONNECT method CONNECT
+
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow authenticated
+http_access deny all
+
+cache deny all
+access_log stdio:/var/log/squid/access.log
+cache_log /var/log/squid/cache.log

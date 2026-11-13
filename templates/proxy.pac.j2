@@ -1,0 +1,6 @@
+function FindProxyForURL(url, host) {
+    if (host === "{{ spnego_effective_proxy_fqdn }}" || isPlainHostName(host)) {
+        return "DIRECT";
+    }
+    return "PROXY {{ spnego_effective_proxy_fqdn }}:{{ spnego_proxy_port }}";
+}

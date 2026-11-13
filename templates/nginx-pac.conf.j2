@@ -1,0 +1,9 @@
+server {
+    listen {{ spnego_pac_port }} default_server;
+    server_name {{ spnego_effective_proxy_fqdn }};
+    root /var/www/html;
+    location = /proxy.pac {
+        default_type application/x-ns-proxy-autoconfig;
+        try_files $uri =404;
+    }
+}

@@ -1,0 +1,16 @@
+---
+- name: Derive the proxy FQDN from the joined domain
+  ansible.builtin.set_fact:
+    spnego_effective_proxy_fqdn: >-
+      {{ spnego_proxy_fqdn if (spnego_proxy_fqdn | length > 0)
+         else (spnego_proxy_hostname | lower) ~ '.' ~ (ludus_domain_fqdn | lower) }}
+
+- name: Configure the PAC for each user at logon
+  ansible.windows.win_template:
+    src: configure-spnego-proxy.cmd.j2
+    dest: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\configure-spnego-proxy.cmd
+
+- name: Install a proxy verification command file
+  ansible.windows.win_template:
+    src: verify-spnego-proxy.cmd.j2
+    dest: C:\Users\Public\Desktop\verify-spnego-proxy.cmd

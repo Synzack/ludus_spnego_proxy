@@ -1,0 +1,9 @@
+---
+- name: Validate the SPNEGO host mode
+  ansible.builtin.assert:
+    that:
+      - spnego_mode in ['proxy', 'client']
+    fail_msg: Set spnego_mode to proxy on the Debian host or client on a domain-joined Windows host.
+
+- name: Run the selected SPNEGO configuration
+  ansible.builtin.include_tasks: "{{ spnego_mode }}.yml"
