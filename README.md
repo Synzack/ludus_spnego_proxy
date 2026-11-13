@@ -3,14 +3,14 @@
 This role deploys a Squid forward proxy using Active Directory
 Kerberos/SPNEGO authentication and configures domain-joined Windows clients to
 discover it through a PAC file. For a complete example, see
-`spnego-range-config.yml`.
+`spnego-proxy-range-config.yml`.
 
 ## Installation in [Ludus](https://ludus.cloud)
 
 ```sh
-git clone https://github.com/Synzack/ludus_spnego
-ludus ansible role add -d ./ludus_spnego
-ludus range config set -f spnego-range-config.yml
+git clone https://github.com/Synzack/ludus_spnego_proxy
+ludus ansible role add -d ./ludus_spnego_proxy
+ludus range config set -f spnego-proxy-range-config.yml
 ludus range deploy
 ```
 

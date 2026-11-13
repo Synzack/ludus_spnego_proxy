@@ -2,7 +2,7 @@
 dependencies: []
 
 galaxy_info:
-  role_name: ludus_spnego
+  role_name: ludus_spnego_proxy
   author: Zach Stein
   description: Deploy and configure an authenticated SPNEGO forward proxy
   license: GPLv3

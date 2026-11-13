@@ -23,7 +23,7 @@ ludus:
     cpus: 2
     linux: true
     roles:
-      - ludus_spnego
+      - ludus_spnego_proxy
     role_vars:
       spnego_mode: proxy
 
@@ -40,10 +40,10 @@ ludus:
       fqdn: ludus.domain
       role: member
     roles:
-      - name: ludus_spnego
+      - name: ludus_spnego_proxy
         depends_on:
           - vm_name: "{{ range_id }}-proxy"
-            role: ludus_spnego
+            role: ludus_spnego_proxy
     role_vars:
       spnego_mode: client
 
