@@ -111,13 +111,9 @@
     owner: root
     group: root
     mode: "0644"
+    validate: /usr/sbin/squid -k parse -f %s
   become: true
   notify: Restart Squid
-
-- name: Validate the Squid configuration
-  ansible.builtin.command: /usr/sbin/squid -k parse
-  become: true
-  changed_when: false
 
 - name: Install the PAC file
   ansible.builtin.template:

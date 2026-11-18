@@ -10,9 +10,16 @@ acl SSL_ports port 443
 acl Safe_ports port 80
 acl Safe_ports port 443
 acl CONNECT method CONNECT
+{% if spnego_unauthenticated_clients | length and spnego_unauthenticated_domains | length %}
+acl service_clients src {{ spnego_unauthenticated_clients | join(' ') }}
+acl service_destinations dstdomain {{ spnego_unauthenticated_domains | join(' ') }}
+{% endif %}
 
 http_access deny !Safe_ports
 http_access deny CONNECT !SSL_ports
+{% if spnego_unauthenticated_clients | length and spnego_unauthenticated_domains | length %}
+http_access allow service_clients service_destinations
+{% endif %}
 http_access allow authenticated
 http_access deny all
 

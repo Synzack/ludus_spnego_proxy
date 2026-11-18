@@ -8,3 +8,8 @@ spnego_proxy_fqdn: ""
 spnego_proxy_port: 3128
 spnego_pac_port: 8080
 spnego_computer_name: SQUIDPROXY
+
+# Optional service destinations that cannot use proxy authentication.
+# Both lists must be populated; all other traffic retains authentication.
+spnego_unauthenticated_clients: []
+spnego_unauthenticated_domains: []

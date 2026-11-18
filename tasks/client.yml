@@ -9,8 +9,3 @@
   ansible.windows.win_template:
     src: configure-spnego-proxy.cmd.j2
     dest: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\configure-spnego-proxy.cmd
-
-- name: Install a proxy verification command file
-  ansible.windows.win_template:
-    src: verify-spnego-proxy.cmd.j2
-    dest: C:\Users\Public\Desktop\verify-spnego-proxy.cmd
